@@ -1,0 +1,11 @@
+<div class="details">
+  <h1><%= contact.full_name %></h1>
+  <p><%= contact.email %></p>
+  <p><%= contact.phone %></p>
+  <p><%= contact.birthday %></p>
+
+  <%= link_to edit_contact_path(contact), class: 'text-decoration-none' do %>
+    <span class="visually-hidden">Edit</span>
+    <i class="fas fa-edit"></i>
+  <% end %>
+</div>
