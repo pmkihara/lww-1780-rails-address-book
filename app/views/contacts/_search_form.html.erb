@@ -1,6 +1,9 @@
 <%= form_with url: contacts_path,
               method: :get,
-              class: 'd-flex' do %>
+              class: 'd-flex',
+              data: {
+                turbo_frame: :list # quando enviar o form, atualize o turbo-frame com id list
+              } do %>
   <div class="input-group">
     <%= text_field_tag :query,
       params[:query],

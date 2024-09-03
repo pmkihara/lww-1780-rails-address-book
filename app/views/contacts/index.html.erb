@@ -1,5 +1,7 @@
 <div class="contacts-grid">
   <%= render 'search_form' %>
   <%= render 'list', contacts: @contacts %>
-  <div class="text-secondary">Select a contact to view details</div>
+  <%= turbo_frame_tag :contact_details do %>
+    <div class="text-secondary">Select a contact to view details</div>
+  <% end %>
 </div>

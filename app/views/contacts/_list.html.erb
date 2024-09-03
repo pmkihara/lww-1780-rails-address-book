@@ -1,7 +1,15 @@
-<div class="list-group">
-  <% contacts.each do |contact| %>
-    <%= link_to contact.full_name,
-        contact_path(contact),
-        class: "list-group-item list-group-item-action" %>
-  <% end %>
-</div>
+<%= turbo_frame_tag :list do %>
+  <div class="list-group" data-controller="contacts-list">
+    <% contacts.each do |contact| %>
+      <%= link_to contact.full_name,
+          contact_path(contact),
+          class: "list-group-item list-group-item-action",
+          data: {
+            turbo_frame: :contact_details, # atualiza o turbo-frame com id contact_details
+            turbo_action: :advance, # atualiza a barra de endereços
+            contacts_list_target: 'contact', # cria um target do Stimulus
+            action: 'click->contacts-list#highlight' # adiciona um eventListener
+          } %>
+    <% end %>
+  </div>
+<% end %>

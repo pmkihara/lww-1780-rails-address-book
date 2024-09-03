@@ -1,11 +1,23 @@
-<div class="details">
-  <h1><%= contact.full_name %></h1>
-  <p><%= contact.email %></p>
-  <p><%= contact.phone %></p>
-  <p><%= contact.birthday %></p>
+<%= turbo_frame_tag :contact_details do %>
+  <div class="details">
+    <h1><%= contact.full_name %></h1>
+    <p><%= contact.email %></p>
+    <p><%= contact.phone %></p>
+    <p><%= contact.birthday %></p>
 
-  <%= link_to edit_contact_path(contact), class: 'text-decoration-none' do %>
-    <span class="visually-hidden">Edit</span>
-    <i class="fas fa-edit"></i>
-  <% end %>
-</div>
+    <%= link_to edit_contact_path(contact), class: 'text-decoration-none' do %>
+      <span class="visually-hidden">Edit</span>
+      <i class="fas fa-edit"></i>
+    <% end %>
+
+    <%= link_to contact_path(contact),
+                class: 'text-decoration-none',
+                data: { turbo_method: :delete,
+                  turbo_confirm: 'Are you sure?',
+                  turbo_frame: '_top' # atualize a página inteira
+                } do %>
+      <span class="visually-hidden">Delete</span>
+      <i class="fas fa-trash"></i>
+    <% end %>
+  </div>
+<% end %>

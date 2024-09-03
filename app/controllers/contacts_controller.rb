@@ -2,7 +2,10 @@ class ContactsController < ApplicationController
   before_action :set_contact, only: %i[show edit update destroy]
 
   def index
+    # Pega todos os contatos e ordena em ordem alfabética
     @contacts = Contact.all.order(:first_name, :last_name)
+
+    # Filtra os contatos por nome
     if params[:query].present?
       @contacts = @contacts.where("first_name ILIKE ? OR last_name ILIKE ?", "%#{params[:query]}%",
                                   "%#{params[:query]}%")
@@ -10,6 +13,8 @@ class ContactsController < ApplicationController
   end
 
   def show
+    # Pega todos os contatos e ordena em ordem alfabética
+    # Precisamos desses contatos para renderizar a partial _list na show
     @contacts = Contact.all.order(:first_name, :last_name)
   end
 
